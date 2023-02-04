@@ -1,6 +1,6 @@
 /* Heading Section */
 
-main > h1{
+main>h1 {
     font-family: calibri;
     border-bottom: 1px solid grey;
     padding-bottom: 20px;
@@ -8,38 +8,38 @@ main > h1{
     font-weight: bolder;
 }
 
-main > ul{   
+main>ul {
     display: flex;
-    flex-direction: row;   
-    padding: 0px; 
+    flex-direction: row;
+    padding: 0px;
     margin: 0px;
 }
 
-main > ul > li {
+main>ul>li {
     display: flex;
     flex-direction: row;
     padding-right: 3%;
-    height: auto;  
+    height: auto;
 }
 
-main > ul > li > a{   
+main>ul>li>a {
     font-family: calibri;
     background-color: Transparent;
     font-size: clamp(1.25vw, 2.0vw, 3.2vw);
     color: grey;
-    text-decoration: none;   
+    text-decoration: none;
 }
 
-main > img{
+main>img {
     margin-top: 15px;
     width: 100%;
-    object-fit:cover;
+    object-fit: cover;
     height: 211px;
     margin-bottom: 15px;
 }
 
 
-main > .sections{
+main>.sections {
     height: auto;
     display: flex;
     flex-direction: row;
@@ -47,89 +47,91 @@ main > .sections{
 
 /* Sidebar Section */
 /* .sections > #div_profile */
-#div_profile{
+#div_profile {
     width: 30%;
     border-right: 1px solid;
     padding-left: 1.5%;
     padding-right: 1.5%;
-    
+
 }
 
-#div_profile > h2{
+#div_profile>h2 {
     font-family: calibri;
     border-bottom: 1px solid;
 }
 
 
-.sections > #div_profile > div {
+.sections>#div_profile>div {
     margin-top: 20px;
-   display:flex;
-   flex-direction: row;
-   align-items: flex-start;
-   height: auto;
-   padding: 2px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    height: auto;
+    padding: 2px;
 }
 
 /* Instructors */
-#div_profile > div > #img_id {
+#div_profile>div>#img_id {
     height: 100px;
     width: 100px;
     margin-right: 30px;
     overflow: hidden;
 }
 
-#div_profile > div > #img_id > img{
+#div_profile>div>#img_id>img {
     height: 100%;
     width: 100%;
-    object-fit: cover;   
+    object-fit: cover;
 }
 
-#div_profile > div > #info{
-    display:flex;
+#div_profile>div>#info {
+    display: flex;
     flex-direction: column;
     font-family: calibri;
-    
+
 }
 
-#div_profile > div > #info > p{
+#div_profile>div>#info>p {
     font-weight: bold;
     margin-bottom: 5px;
 }
 
-#div_profile > div > #info > a{
+#div_profile>div>#info>a {
     color: rgb(15, 90, 189);
     text-decoration: none;
 }
 
 /* Course schedule */
-#div_profile > span {
-display: flex;
-flex-direction: column;
-font-family: calibri;
+#div_profile>span {
+    display: flex;
+    flex-direction: column;
+    font-family: calibri;
+}
+
+#div_profile>span>p {
+    margin: 5px;
 }
 
 
-
-#div_profile > span > .p_bold{
+#div_profile>span>.p_bold {
     font-weight: bold;
-    
 }
 
 /* Announcement Section */
 /* .sections > #div_news (announcement) */
-#div_news{
+#div_news {
     padding-left: 1.5%;
     padding-right: 1.5%;
 
     width: 70%;
 }
 
-#div_news > h2{
+#div_news>h2 {
     font-family: calibri;
     border-bottom: 1px solid;
 }
 
-#div_news div{
+#div_news div {
     font-family: calibri;
     padding-left: 2%;
     padding-right: 2%;
@@ -139,6 +141,6 @@ font-family: calibri;
     border: 1px solid;
 }
 
-#div_news > #welcome_div{
+#div_news>#welcome_div {
     margin-bottom: 40px;
 }
