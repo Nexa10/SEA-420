@@ -17,17 +17,17 @@
             </ul>
         </nav>
     </header>
-
+   
     <form action="/pay" method="POST">
         <h1>Pay For Parking</h1>
         <p>All vehicles must pay for parking. Any Vehicle parked illegally will be ticketed and towed.</p>
         
         <div class="form_div">
             <label>Choose a Parking Lot</label>
-            <select name="parking_lot" id="">
-                <option value="Parking_Lot_A">Parking Lot A</option>
-                <option value="Parking_Lot_B">Parking Lot B</option>
-                <option value="Underground_Garage_Parking">Underground Garage Parking</option>
+            <select name="parking_rate" id="">
+                <option value="2.5">Parking Lot A ($2.50/h)</option>
+                <option value="1.0">Parking Lot B ($1.00/h)</option>
+                <option value="5.0">Underground Garage Parking ($5.00/h)</option>
             </select>
             <label>Hours:</label>
             <input type="text" name="hours" placeholder="Enter Number of hours">
