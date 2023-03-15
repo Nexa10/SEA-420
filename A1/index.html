@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Hub</title>
+    <link rel="stylesheet" href="Files/index.css">
+    <link rel="icon" href="Files/favicon.ico">
+</head>
+<body>
+    <header class="main_header">
+        <nav>
+            <ul>
+                <li><a href="http://localhost:8080/">HOME</a></li>
+                <li><a href="http://localhost:8080/admin">ADMIN</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <form action="/pay" method="POST">
+        <h1>Pay For Parking</h1>
+        <p>All vehicles must pay for parking. Any Vehicle parked illegally will be ticketed and towed.</p>
+        
+        <div class="form_div">
+            <label>Choose a Parking Lot</label>
+            <select name="parking_lot" id="">
+                <option value="Parking_Lot_A">Parking Lot A</option>
+                <option value="Parking_Lot_B">Parking Lot B</option>
+                <option value="Underground_Garage_Parking">Underground Garage Parking</option>
+            </select>
+            <label>Hours:</label>
+            <input type="text" name="hours" placeholder="Enter Number of hours">
+            <label>License Plate:</label>
+            <input type="text" name="license_plate" placeholder="Enter License plate">
+            <button type="submit" id="submit_btn">Pay</button>
+        </div>
+    </form>
+    
+</body>
+</html>
