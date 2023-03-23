@@ -5,9 +5,8 @@ const path = require("path")
 app.use(express.urlencoded({extended: true}))
 app.use('/Files', express.static(__dirname + '/assets'))
 
-let inventory = {num_cars: 0, amt_paid: 0}
-let adminLog = [{username: "admin", password: "0000"},
-                {username: "messi", password: "2023"}]
+let adminLog = [{username: "admin", password: "0000"},]
+let database = [{licensePLates:"", amt_paid: 0}]
 
 const calcTotal = (rate, hours)=>{
     let subTotal = rate * hours;
@@ -26,7 +25,7 @@ const printReciept = (rate, hours, cost) =>{
         <link rel="icon" href="Files/favicon.ico">
       </head>
       <body>
-        <a style="font-family: calibri;" href="http://localhost:8080/">Home Page</a>
+        <a style="font-family: calibri;" href="/">Home Page</a>
         <h1 style="font-family: calibri;">Your Receipt</h1>
         <p style="font-family: calibri;">Hours requested: ${hours} hours</p>
         <p style="font-family: calibri;">Hourly rate: $${rate} per hour</p>
@@ -41,7 +40,7 @@ const printReciept = (rate, hours, cost) =>{
 }
 
 const errorMsg = (prompt) =>{
-    //prompt -> string, gets value of the error
+    //prompt -> string, gets value of the error which is used to access the dictionary.
     let dictionary = {
         "empty": "ERROR: Field cannot be left empty",
         "nan" : "ERROR: Hours must be a number",
@@ -60,7 +59,7 @@ const errorMsg = (prompt) =>{
         <link rel="icon" href="Files/favicon.ico">
       </head>
       <body>
-        <a style="font-family: calibri;" href="http://localhost:8080/">Home Page</a>
+        <a style="font-family: calibri;" href="/">Home Page</a>
         <h2 style="font-family: calibri; color: red; background-color: yellow;">${msg}</h1>
       </body>
     </html>
@@ -83,9 +82,10 @@ app.post("/pay", (req, res)=>{
         return
     }
         
-    //convert to numbers
+    //convert to data types
     const rate = parseFloat(req.body.parking_rate)
     const hour = parseInt(req.body.hours)
+    const plates = req.body.license_plate
 
     if(hour > 8){
         res.send(errorMsg("max num exceeded"))
@@ -98,10 +98,10 @@ app.post("/pay", (req, res)=>{
     }    
     
     //calcTotal - calculates the cost and returns an object literal
-    const receiptObject = calcTotal(rate, hour);
-    inventory['num_cars'] += 1;
-    inventory['amt_paid'] += receiptObject.total;
-    res.send(printReciept(rate, hour, receiptObject))
+    const costObject = calcTotal(rate, hour);
+    database.push({licensePLates:plates, amt_paid: costObject.total})
+
+    res.send(printReciept(rate, hour, costObject))
 })
 
 app.get("/admin", (req, res) => {
@@ -116,6 +116,8 @@ app.post("/login", (req, res)=>{
 
     const username = req.body.admin_username
     const password = req.body.admin_password
+
+    //validate username & password
     let found = false
     for(let i = 0; i < adminLog.length; i++){
         if(username === adminLog[i].username && password === adminLog[i].password){
@@ -128,6 +130,14 @@ app.post("/login", (req, res)=>{
         return
     }
 
+    //calculating total amount and cars
+    let num_cars = 0;
+    let total_amt = 0;
+    for(let i = 0; i < database.length; i++){
+      if(database[i].licensePLates) num_cars += 1;
+      if(database[i].amt_paid) total_amt = total_amt + database[i].amt_paid;
+    }
+
     const inventoryInfoHtml = `
     <!DOCTYPE html>
     <html>
@@ -136,9 +146,9 @@ app.post("/login", (req, res)=>{
         <link rel="icon" href="Files/favicon.ico">
       </head>
       <body>
-        <a style="font-family: calibri;" href="http://localhost:8080/">Home Page</a>
-        <p style="font-family: calibri;">Total Cars: ${inventory.num_cars}</p>
-        <p style="font-family: calibri;">Total amount collected: $${inventory.amt_paid.toFixed(2)}</p>
+        <a style="font-family: calibri;" href="/">Home Page</a>
+        <p style="font-family: calibri;">Total Cars: ${num_cars}</p>
+        <p style="font-family: calibri;">Total amount collected: $${total_amt.toFixed(2)}</p>
       </body>
     </html>
   `
