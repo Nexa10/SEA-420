@@ -5,9 +5,10 @@ const path = require("path")
 app.use(express.urlencoded({extended: true}))
 app.use('/Files', express.static(__dirname + '/assets'))
 
-let adminLog = [{username: "admin", password: "0000"},]
-let database = [{licensePLates:"", amt_paid: 0}]
+let adminLog = [{username: "admin", password: "0000"},] //D: admin dB
+let database = [{licensePLates:"", amt_paid: 0}] //D: Data store
 
+//D: calculates cost of parking, return object literal
 const calcTotal = (rate, hours)=>{
     let subTotal = rate * hours;
     let tax = (13/100) * subTotal;
@@ -15,6 +16,7 @@ const calcTotal = (rate, hours)=>{
     return {total: total, tax: tax, subTotal: subTotal}
 }
 
+//D: Returns Html of receipt
 const printReciept = (rate, hours, cost) =>{
     //cost is an object literal
     const receipt_html = `
@@ -25,7 +27,6 @@ const printReciept = (rate, hours, cost) =>{
         <link rel="icon" href="Files/favicon.ico">
       </head>
       <body>
-        <a style="font-family: calibri;" href="/">Home Page</a>
         <h1 style="font-family: calibri;">Your Receipt</h1>
         <p style="font-family: calibri;">Hours requested: ${hours} hours</p>
         <p style="font-family: calibri;">Hourly rate: $${rate} per hour</p>
@@ -39,8 +40,8 @@ const printReciept = (rate, hours, cost) =>{
   return receipt_html
 }
 
+//D: stores a dictionary of errors used for error checking. prompt -> string, gets value of the error which is used to access the dictionary.
 const errorMsg = (prompt) =>{
-    //prompt -> string, gets value of the error which is used to access the dictionary.
     let dictionary = {
         "empty": "ERROR: Field cannot be left empty",
         "nan" : "ERROR: Hours must be a number",
@@ -49,7 +50,7 @@ const errorMsg = (prompt) =>{
         "login failed": "ERROR: Login Failed"
     }
 
-    let msg = dictionary[prompt.toLowerCase()];
+    let msg = dictionary[prompt.toLowerCase()]; 
 
     const errorMsg_html = `
     <!DOCTYPE html>
@@ -59,7 +60,6 @@ const errorMsg = (prompt) =>{
         <link rel="icon" href="Files/favicon.ico">
       </head>
       <body>
-        <a style="font-family: calibri;" href="/">Home Page</a>
         <h2 style="font-family: calibri; color: red; background-color: yellow;">${msg}</h1>
       </body>
     </html>
@@ -67,10 +67,12 @@ const errorMsg = (prompt) =>{
   return errorMsg_html
 }
 
+//D: Home
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "index.html"))
 })
 
+//D: Pay endpoint
 app.post("/pay", (req, res)=>{
     if(req.body.license_plate === "" || req.body.hours === ""){
         res.send(errorMsg("empty"))
@@ -82,7 +84,6 @@ app.post("/pay", (req, res)=>{
         return
     }
         
-    //convert to data types
     const rate = parseFloat(req.body.parking_rate)
     const hour = parseInt(req.body.hours)
     const plates = req.body.license_plate
@@ -97,17 +98,18 @@ app.post("/pay", (req, res)=>{
         return
     }    
     
-    //calcTotal - calculates the cost and returns an object literal
-    const costObject = calcTotal(rate, hour);
+    const costObject = calcTotal(rate, hour); //D: claculate cost
     database.push({licensePLates:plates, amt_paid: costObject.total})
 
     res.send(printReciept(rate, hour, costObject))
 })
 
+//D: Admin endpoint
 app.get("/admin", (req, res) => {
     res.sendFile(path.join(__dirname, "login.html"))
 })
 
+//D: Login endpoint
 app.post("/login", (req, res)=>{
     if(req.body.admin_username === "" || req.body.admin_password === ""){
         res.send(errorMsg("empty"))
@@ -117,7 +119,7 @@ app.post("/login", (req, res)=>{
     const username = req.body.admin_username
     const password = req.body.admin_password
 
-    //validate username & password
+    //D: Validating Login Info
     let found = false
     for(let i = 0; i < adminLog.length; i++){
         if(username === adminLog[i].username && password === adminLog[i].password){
@@ -130,7 +132,7 @@ app.post("/login", (req, res)=>{
         return
     }
 
-    //calculating total amount and cars
+    //D: Caculating the total number of cars and amount paid  
     let num_cars = 0;
     let total_amt = 0;
     for(let i = 0; i < database.length; i++){
