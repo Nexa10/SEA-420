@@ -9,8 +9,8 @@
 </head>
 <body>
     <header>
-        <h1><a href="/">Nexa's Rentals</a></h1>
-        <form action="/search" method="POST">
+        <h1><a href="/">Leo's Rentals</a></h1>
+        <form action="/search" method="POST" class="searchForm">
             <input type="text" placeholder="Enter Keyword" name="searchKeyword">
             <button type="submit">Search</button>
         </form>
@@ -23,7 +23,7 @@
             <form action="/modify-results" method="POST">
                 <label for="resultType">Modify Results: </label>
                 <select name="resultType" id="">
-                    <option disabled selected value="">-- Select an option --</option>
+                    <option disabled selected value="">Select an option</option>
                     <option value="available">Available Items</option>
                     <option value="rentals">Your Rentals</option>
                 </select>
@@ -47,7 +47,7 @@
                 {{#if this.available}}
                     <button type="submit">Rent</button>
                     {{else}}
-                    <span style="background-color: red;">Rented by you</span>
+                    <p id="rented">Rented by you</p>
                    
                 {{/if}}
             </form>

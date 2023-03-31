@@ -26,8 +26,8 @@ const database = [{id:"GMCP", productName:"Gaming PC", img:"Gaming-Computer-PNG-
 let ErrorDictionary = {
     "NOTFOUND": "No results found",
     "NOITEMS" : "No rented Items found",
-    "NAN": "ERROR: Empty Field Provided",
-    "NOCHOICE": "ERROR: Choose a filter type"
+    "NAN": "Empty Field Provided",
+    "NOCHOICE": "Choose a filter type"
 }
 
 let returnObject = [] //D: This object is returned to the template.
@@ -66,7 +66,7 @@ const search = (productNames, keyword) =>{
         }
     }
     
-    let flag =false;
+    let flag = false;
     for(let i = 0; i < arr.length; i++){
         if (keyword === arr[i]) flag = true;
     }
