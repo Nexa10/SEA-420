@@ -13,7 +13,6 @@ app.engine(".hbs", exphbs.engine({
 }));
 app.set("view engine", ".hbs");
 
-//------------------------------------------------------------------------
 /*Global Variables*/ 
 const database = [{id:"GMCP", productName:"Gaming PC", img:"Gaming-Computer-PNG-Image.png", available:true},
                     {id:"BHPN", productName:"Argentina Football Jersey", img:"jersey.png", available:true},
@@ -53,6 +52,7 @@ const returnAllProduct = () =>{
     }
 }
 
+//D: Takes a product name, compares each word of that name to the keyword, returns bool.
 const search = (productNames, keyword) =>{
     let j = 0;
     let arr = [];
@@ -99,11 +99,12 @@ const filterSearch = (searchtype) =>{
     }
 }
 
+//Home
 app.get("/", (req, res) =>{
     res.render("homepage", {layout:false, productsItems:database})
 })
 
-//NOTE Search
+//Search
 app.post("/search", (req, res)=>{
     const s_keyword = req.body.searchKeyword;
     if(s_keyword == ""){
@@ -123,7 +124,7 @@ app.post("/search", (req, res)=>{
     res.render("homepage", {layout:false, productsItems:returnObject})
 })
 
-//NOTE Modify
+//Modify
 app.post("/modify-results", (req, res)=>{
     const s_type = req.body.resultType;
     if(s_type === undefined){
@@ -144,14 +145,14 @@ app.post("/modify-results", (req, res)=>{
     res.render("homepage", {layout:false, productsItems:returnObject})
 })
 
-//NOTE Rent
+//Rent
 app.post("/rent", (req, res)=>{
     const p_id = req.body.productId;
     rentProduct(p_id);
     res.render("homepage", {layout:false, productsItems:database})
 })
 
-//NOTE Return
+//Return
 app.post("/return", (req, res)=>{
     returnAllProduct();
     if(returnObject.length < 1){
