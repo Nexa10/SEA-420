@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Home</title>
+</head>
+<body>
+    <header>
+        <h1><a href="/">Nexa's Rentals</a></h1>
+        <form action="/search" method="POST">
+            <input type="text" placeholder="Enter Keyword" name="searchKeyword">
+            <button type="submit">Search</button>
+        </form>
+        
+    </header>
+
+    <main>
+        <h1>Rental Catalogue</h1>
+        <section class="filter_section">
+            <form action="/modify-results" method="POST">
+                <label for="resultType">Modify Results: </label>
+                <select name="resultType" id="">
+                    <option disabled selected value="">-- Select an option --</option>
+                    <option value="available">Available Items</option>
+                    <option value="rentals">Your Rentals</option>
+                </select>
+                <button type="submit">Update</button>
+            </form>
+            
+            <form action="/return" method="POST">
+                <button type="submit">Return All Items</button>
+            </form>
+            
+        </section>
+            
+        <section class="products">
+            {{#each productsItems}}
+            <form action ="/rent" method="POST" class="product_item">
+                <p>{{this.productName}}</p>
+                <input type="hidden" name="productId" value="{{this.id}}">
+                <div class="product_img">
+                    <img src="images/{{this.img}}" alt="img">
+                </div>
+                {{#if this.available}}
+                    <button type="submit">Rent</button>
+                    {{else}}
+                    <span style="background-color: red;">Rented by you</span>
+                   
+                {{/if}}
+            </form>
+            {{/each}}
+
+        </section>
+        
+
+    </main>
+</body>
+</html>

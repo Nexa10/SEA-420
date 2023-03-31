@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>Nexa's Rentals</h1>
+        <input type="text" placeholder="Enter Keyword">
+        <button>Search</button>
+    </header>
+
+    <main>
+        <h1>Rental Catalogue</h1>
+        <section class="filter_section">
+            <form form action="/search" method="POST">
+                <label for="resultType">Modify Results: </label>
+                <select name="resultType" id="">
+                    <option disabled selected value="">-- Select an option --</option>
+                    <option value="available">Available Items</option>
+                    <option value="rentals">Your Rentals</option>
+                </select>
+                <button type="submit">Update</button>
+            </form>
+            
+            <form form action="/return" method="POST">
+                <button type="submit">Return All Items</button>
+            </form>
+            
+        </section>
+            
+        <section class="products">
+            <form action ="/rent" method="POST" class="product_item">
+                <p>Name</p>
+                <div class="product_img">
+                    <img src="Gaming-Computer-PNG-Image.png" alt="img">
+                </div>
+                <button>Rent</button>
+            </form>
+    
+            <form action ="/rent" method="POST" class="product_item">
+                <p>Name</p>
+                <div class="product_img">
+                    <img src="jersey.png" alt="img">
+                </div>
+                <span>Rented by you</span>
+            </form>
+        </section>
+        
+
+    </main>
+</body>
+</html>
