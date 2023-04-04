@@ -14,11 +14,11 @@ app.engine(".hbs", exphbs.engine({
 app.set("view engine", ".hbs");
 
 /*Global Variables*/ 
-const database = [{id:"GMCP", productName:"Gaming PC", img:"Gaming-Computer-PNG-Image.png", available:true},
-                    {id:"BHPN", productName:"Argentina Football Jersey", img:"jersey.png", available:true},
+const database = [{id:"GMPC", productName:"Gaming PC", img:"Gaming-Computer-PNG-Image.png", available:true},
+                    {id:"ARGJ", productName:"Argentina Football Jersey", img:"jersey.png", available:true},
                     {id:"BGPK", productName:"Adidas Bag Pack", img:"adidasbag.png", available:true},
                     {id:"HEAD", productName:"Beyerdynamics Headphone", img:"headphones.png", available:true},
-                    {id:"RBLP", productName:"Razer Blade 15 Laptop", img:"laptop.png", available:true},
+                    {id:"LTOP", productName:"Razer Blade 15 Laptop", img:"laptop.png", available:true},
                     {id:"PYS5", productName:"Play Station 5", img:"ps5-photo.png", available:true},
                     {id:"PYS4", productName:"Play Station 4", img:"ps4-photo.png", available:true},] 
 
@@ -146,8 +146,8 @@ app.post("/modify-results", (req, res)=>{
 })
 
 //Rent
-app.post("/rent", (req, res)=>{
-    const p_id = req.body.productId;
+app.post("/rent:id", (req, res)=>{
+    const p_id = req.params.id;
     rentProduct(p_id);
     res.render("homepage", {layout:false, productsItems:database})
 })

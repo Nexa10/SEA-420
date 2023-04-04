@@ -38,7 +38,7 @@
             
         <section class="products">
             {{#each productsItems}}
-            <form action ="/rent" method="POST" class="product_item">
+            <form action ="/rent{{this.id}}" method="POST" class="product_item">
                 <p>{{this.productName}}</p>
                 <input type="hidden" name="productId" value="{{this.id}}">
                 <div class="product_img">
