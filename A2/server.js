@@ -17,7 +17,7 @@ app.set("view engine", ".hbs");
 const database = [{id:"GMPC", productName:"Gaming PC", img:"Gaming-Computer-PNG-Image.png", available:true},
                     {id:"ARGJ", productName:"Argentina Football Jersey", img:"jersey.png", available:true},
                     {id:"BGPK", productName:"Adidas Bag Pack", img:"adidasbag.png", available:true},
-                    {id:"HEAD", productName:"Beyerdynamics Headphone", img:"headphones.png", available:true},
+                    {id:"HDPH", productName:"Beyerdynamics Headphone", img:"headphones.png", available:true},
                     {id:"LTOP", productName:"Razer Blade 15 Laptop", img:"laptop.png", available:true},
                     {id:"PYS5", productName:"Play Station 5", img:"ps5-photo.png", available:true},
                     {id:"PYS4", productName:"Play Station 4", img:"ps4-photo.png", available:true},] 

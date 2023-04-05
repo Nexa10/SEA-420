@@ -4,11 +4,14 @@
     font-family: calibri;
 }
 
+
+
 header{
     text-align: center;
     padding: 0px;
     margin: 0px;
     background-color:rgba(0, 128, 128, 0.884);
+    min-width: 550px;
 }
 
 .searchForm{
@@ -54,6 +57,7 @@ header button{
     flex-direction: row;
     justify-content: space-between;
     font-size: 18px;
+    min-width: 450px;
 }
 
 .filter_section label{
@@ -63,6 +67,7 @@ header button{
 .filter_section select{
     height: 1.45rem;
     width: 12rem;
+    
 }
 
 .filter_section button {
@@ -84,8 +89,8 @@ header button{
 }
 
 main{
-    margin-left: 8rem;
-    margin-right: 8rem;
+    margin-left: 10%;
+    margin-right: 10%;
     margin-top: 20px;
     margin-bottom: 30px;
 }
@@ -99,6 +104,7 @@ main > h1{
 .products{
     margin-top: 15px;
     margin-bottom: 15px;
+    min-width: 400px;
 }
 
 .product_item{
@@ -123,6 +129,7 @@ main > h1{
    object-fit: contain; 
    object-position: left;
    margin-top: 5px;
+   min-width: 500px;
 }
 
 .product_item p{
