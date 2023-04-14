@@ -1,0 +1,19 @@
+
+{{#if errormsg.isError}}
+            <script>openPopup()</script>
+            <div class="popup" id="popup">
+                <img src="images/tick.png" alt="">
+                <h2>Error</h2>
+                <p>{{errormsg.msg}}</p>
+                <button onclick="window.location.href='/';"> Close </button>
+            </div> 
+
+        {{else}}
+            <div class="popup" id="popup">
+                <img src="images/404-tick.png" alt="">
+                <h2>Success</h2>
+                <p>Class was booked successfully, find the summary in cart</p>
+                <button onclick="window.location.href='/cart';"> Go to Cart </button>
+            </div> 
+
+{{/if}}

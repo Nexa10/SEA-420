@@ -1,0 +1,32 @@
+<main id="adminpageMain">
+    <h1>Summary</h1>
+
+    <section class="summary_table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Classes</th>
+                    <th>Price</th>
+                    <th>Price + Tax</th>
+                    <th>Date</th>
+                    
+                </tr>
+            </thead>
+            
+            <tbody>
+                {{#each inventory}}
+                <tr>
+                    <td>{{this.username}}</td>
+                    <td>{{this.classname}}</td>
+                    <td>{{this.price}}</td>
+                    <td>{{this.hstPrice}}</td>
+                    <td>{{this.date}}</td>
+                    
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>    
+
+    </section>
+</main>

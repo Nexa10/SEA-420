@@ -1,0 +1,30 @@
+<main id="cartpageMain">
+    <h1>Cart</h1>
+
+    <section class="summary_table">
+        <table>
+            <thead>
+                <tr>
+                    <th> </th>
+                    <th>Classes</th>
+                    <th>Duration</th>
+                    <th>Price</th>
+                    
+                </tr>
+            </thead>
+            
+            <tbody>
+                {{#each userBookings}}
+                <tr>
+                    <td class="cartImg"> {{this.idx}}</td>
+                    <td>{{this.classname}}</td>
+                    <td>{{this.length}}</td> 
+                    <td>{{this.price}}</td> 
+                </tr>
+                {{/each}}
+                
+            </tbody>
+        </table>
+            
+    </section>
+</main>

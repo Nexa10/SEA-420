@@ -1,0 +1,21 @@
+<main id="homepageMain">
+    <h1>Classes</h1>
+    
+    <div class="content_container">
+
+        {{#each gymclasses}}
+        <form class="classesContent" action="/book-class{{this.id}}" method="POST">
+            <img src="images/{{this.classimg}}" alt="img">
+            <div>
+                <p class="classTitle">{{this.classname}}</p>
+                <p>{{this.length}} Minutes</p>
+                <p>${{this.price}}</p>
+                <input type="hidden" name="productname" value="{{this.classname}}">
+                <button type="submit">Book Now</button>
+            </div>     
+        </form>
+        {{/each}}
+
+    </div>
+    
+</main>

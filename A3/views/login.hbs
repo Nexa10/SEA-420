@@ -1,0 +1,19 @@
+<main id="loginpageMain">
+    <h1>Login or Create a new account </h1>
+
+    <form class="login_container"  method="POST">
+        <label for="">Username:</label>
+        <input placeholder="Enter Username" type="text" name="username">
+        <label for="">Password:</label>
+        <input placeholder="Enter Password" type="password" name="password">
+        
+        {{#if errormsg.isError}}
+            <p class="errorWarnings">{{errormsg.msg}}</p> 
+        {{/if}}
+
+        <div id="login-createbtns">
+            <button type="submit" formaction="/login-account">Login</button>
+            <button type="submit" id="createAccBtn" formaction="/create-account">Create Account</button>
+        </div>
+    </form> 
+</main>
